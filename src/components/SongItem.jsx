@@ -1,13 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const AlbumItem = ({ image, name, desc, id }) => {
-  //   Navigate es un hook para navegar hacia los detalles del albun dal darle click al albun esta direccionara hacia esa pagina.
+const SongItem = ({ name, image, desc, id }) => {
   const navigate = useNavigate();
 
   return (
-    //
-
     <div
       onClick={() => navigate(`/albun/${id}`)}
       className="min-w-[180px] p-2 px-3 rounded cursor-pointer hover:bg-[#ffffff26]"
@@ -19,4 +16,4 @@ const AlbumItem = ({ image, name, desc, id }) => {
   );
 };
 
-export default AlbumItem;
+export default SongItem;
