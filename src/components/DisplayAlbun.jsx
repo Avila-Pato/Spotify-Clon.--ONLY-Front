@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import NavBar from "./NavBar";
 import { useParams } from "react-router-dom";
 import {
@@ -6,11 +6,13 @@ import {
   assets,
   songsData,
 } from "../assets/frontend-assets/assets";
+import { PlayerContext } from "../context/PlayerContext";
 
 const DisplayAlbun = () => {
   // useParams útil cuando necesitas extraer y utilizar valores dinámicos de la URL, como un ID de usuario o un nombre de artículo
   const { id } = useParams();
   const albumData = albumsData[id];
+  const { playWithId } = useContext(PlayerContext);
 
   return (
     <>
@@ -39,12 +41,13 @@ const DisplayAlbun = () => {
           <b className="mr-4">#</b>Titulo
         </p>
         <p>Álbum</p>
-        <p className="hidden sm:block">Datos</p>
+        <p className="hidden sm:block">Reproducido</p>
         <img className="m-auto w-4 " src={assets.clock_icon} alt="" />
       </div>
       <hr />
       {songsData.map((item, index) => (
         <div
+          onClick={() => playWithId(item.id)}
           key={index}
           className="grid grid-cols-3 sm:grid-cols-4 gap-2 p-2 items-center text-[#a7a7a7] hover:bg-[#ffffff2b] cursor-pointer "
         >
@@ -54,7 +57,7 @@ const DisplayAlbun = () => {
             {item.name}
           </p>
           <p className="text-[15px]">{albumData.name}</p>
-          <p className="text-[15px] hidden sm:block">5 Dias Aproximadamente</p>
+          <p className="text-[15px] hidden sm:block">Hace 5 Dias</p>
           <p className="text-[15px] text-center">{item.duration}</p>
         </div>
       ))}

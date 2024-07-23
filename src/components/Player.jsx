@@ -4,8 +4,18 @@ import { PlayerContext } from "../context/PlayerContext";
 
 const Player = () => {
   // Desestructuración del contexto
-  const { track, seekBar, seekBg, playStatus, play, pause, time } =
-    useContext(PlayerContext);
+  const {
+    track,
+    seekBar,
+    seekBg,
+    playStatus,
+    play,
+    pause,
+    time,
+    previous,
+    next,
+    seekSong,
+  } = useContext(PlayerContext);
 
   return (
     <div className="h-[10%] bg-black flex justify-between items-center text-white px-4">
@@ -27,6 +37,7 @@ const Player = () => {
             className="cursor-pointer w-4"
           />
           <img
+            onClick={previous}
             src={assets.prev_icon}
             alt="Previous"
             className="cursor-pointer w-4"
@@ -48,6 +59,7 @@ const Player = () => {
           )}
 
           <img
+            onClick={next}
             src={assets.next_icon}
             alt="Next"
             className="cursor-pointer w-4"
@@ -66,6 +78,7 @@ const Player = () => {
           </p>
           <div
             ref={seekBg}
+            onClick={seekSong}
             className="w-[60vw] max-w-[500px] bg-gray-300 rounded-full cursor-pointer"
           >
             <hr
